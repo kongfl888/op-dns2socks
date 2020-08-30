@@ -1,0 +1,42 @@
+From cb7faae86cf14d87324d1d220204ace6ed89684b Mon Sep 17 00:00:00 2001
+From: kongfl888 K <kongfl888@outlook.com>
+Date: Fri, 28 Aug 2020 11:07:02 +0800
+Subject: [PATCH] add makefile
+
+Signed-off-by: kongfl888 K <kongfl888@outlook.com>
+---
+ DNS2SOCKS/Makefile | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100644 DNS2SOCKS/Makefile
+
+diff --git a/DNS2SOCKS/Makefile b/DNS2SOCKS/Makefile
+new file mode 100644
+index 0000000..31e148e
+--- /dev/null
++++ b/DNS2SOCKS/Makefile
+@@ -0,0 +1,22 @@
++CC = gcc
++CFLAGS = -pthread -Wall -O3 -Wl,--build-id=none
++SRC = DNS2SOCKS.c
++MAIN = dns2socks
++DESTDIR = /usr/local/bin
++
++.PHONY: all install uninstall clean
++
++all: $(MAIN)
++
++$(MAIN):
++	$(CC) $(CFLAGS) -s -o $(MAIN) $(SRC)
++
++install: $(MAIN)
++	install -d $(DESTDIR)
++	install -m 0755 $(MAIN) $(DESTDIR)
++
++uninstall:
++	$(RM) $(DESTDIR)/$(MAIN)
++
++clean:
++	$(RM) $(MAIN)
+-- 
+2.14.1.windows.1
+
